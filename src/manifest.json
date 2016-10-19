@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+
+  "name": "Easy On The Eyes",
+  "description": "This extension will make a page more readable",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "eote.html"
+  },
+  "web_accessible_resources": [
+    "./js/content_script.js",
+    "css/readable.css"
+  ]
+}
