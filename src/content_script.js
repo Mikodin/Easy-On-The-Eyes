@@ -9,7 +9,7 @@ var cssId = 'readable.css';  // you could encode the css path itself to generate
     'padding:0 .62em;' +
     'font:1.2em/1.62em sans-serif;}' +
     'h1,h2,h3{line-height:1.2em;}' +
-    '@media print{body{max-width:none}};' +
+    '@media print{body{max-width:none}};';
     /*
   var link  = document.createElement('link');
   link.id   = cssId;
