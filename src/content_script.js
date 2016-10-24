@@ -10,13 +10,5 @@ var cssId = 'readable.css';  // you could encode the css path itself to generate
     'font:1.2em/1.62em sans-serif;}' +
     'h1,h2,h3{line-height:1.2em;}' +
     '@media print{body{max-width:none}};';
-    /*
-  var link  = document.createElement('link');
-  link.id   = cssId;
-  link.rel  = 'stylesheet';
-  link.type = 'text/css';
-  link.href = 'https://github.com/Rayne58/Easy-On-The-Eyes/blob/master/src/css/readable.css';
-  link.media = 'all';
-  */
-    head.appendChild(style);
+  head.appendChild(style);
 }
