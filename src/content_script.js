@@ -1,7 +1,6 @@
-console.log('!hello');
-var cssId = 'readable.css';  // you could encode the css path itself to generate id..
-  if (!document.getElementById(cssId))
-{
+var cssId = 'readable.css';  
+
+if (!document.getElementById(cssId)) {
   var head  = document.getElementsByTagName('head')[0];
   var style = document.createElement('style');
   style.innerHTML = 'body{margin:1em auto;' +
