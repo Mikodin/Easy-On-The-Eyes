@@ -1,47 +1,39 @@
-var cssId = 'readable.css';  
+window.getSelection().type === "Range" ? surroundSelection() : 
+  injectCSS('body');
 
-console.log(document.getSelection());
-function injectBodyCSS() {
-  if (!document.getElementById(cssId)) {
-    var head  = document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.innerHTML = 'body {margin:1em auto;' +
-      'max-width:40em;' +
-      'padding:0 .62em;' +
-      'font:1.2em/1.62em sans-serif;}' +
-      'h1,h2,h3{line-height:1.2em;}' +
-      '@media print{body{max-width:none}};';
-    head.appendChild(style);
-  }
-}
-
-function injectSelectionCSS() {
-  if (!document.getElementById(cssId)) {
-    var head  = document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.innerHTML = '.eote-readable {margin:1em auto;' +
-      'max-width:40em;' +
-      'padding:0 .62em;' +
-      'font:1.2em/1.62em sans-serif;}' +
-      'h1,h2,h3{line-height:1.2em;}' +
-      '@media print{body{max-width:none}};';
-    head.appendChild(style);
-  }
-}
-
-
-function readableSelection() {
+function surroundSelection() {
   var selection= window.getSelection().getRangeAt(0);
   var selectedText = selection.extractContents();
   var div = document.createElement("div");
+
   div.className = "eote-readable";
   div.appendChild(selectedText);
   selection.insertNode(div);
-  injectSelectionCSS();
+  injectCSS(div.className);
 }
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    request.selectionText === undefined ? injectBodyCSS() : readableSelection();
-    console.log(request);
-  });
+function injectCSS(divClassName) {
+  var head  = document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.innerHTML = generateCSS(divClassName);
+  head.appendChild(style);
+}
+
+function generateCSS(element) {
+  if (element !== 'body')
+    element = '.' + element;
+
+  var style = element + 
+    '{' +
+      'margin:1em auto !important;' +
+      'max-width:40em !important;' +
+      'padding:0 .62em !important;' +
+      'font:1.2em/1.62em sans-serif !important;' +
+    '}' +
+      'h1,h2,h3' + 
+    '{' + 
+      'line-height:1.2em !important;' + 
+    '}';
+
+  return style;
+}

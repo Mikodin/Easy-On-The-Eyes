@@ -1,3 +1,6 @@
+/*
+* To avoid duplicates if you click the actual extension button
+*/
 chrome.contextMenus.remove("eote-page", null);
 chrome.contextMenus.remove("eote-selection", null);
 chrome.contextMenus.create({
@@ -14,6 +17,9 @@ chrome.contextMenus.create({
   "onclick": renderReadable
 });
 
+// Hotkey ctrl + shift + y
+chrome.commands.onCommand.addListener(renderReadable);
+
 document.addEventListener('DOMContentLoaded', function() {
   var btn = document.getElementById('injectBtn');
   btn.addEventListener('click', renderReadable);
@@ -21,7 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function renderReadable(info, tab) {
   chrome.tabs.executeScript(null, {file: "js/content_script.js"});
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, info)  
-  });
 }
