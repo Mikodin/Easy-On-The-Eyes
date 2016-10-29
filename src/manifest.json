@@ -19,7 +19,7 @@
     "16": "icon16.png"
   },
   "web_accessible_resources": [
-    "./js/content_script.js",
+    "js/content_script.js",
     "css/readable.css"
   ]
 }

@@ -16,10 +16,8 @@ function renderReadable(info, tab) {
   console.log("info: " + JSON.stringify(info));
   console.log("tab: " + JSON.stringify(tab));
 
-  chrome.tabs.executeScript(null, {file: "content_script.js"});
+  chrome.tabs.executeScript(null, {file: "js/content_script.js"});
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, info, function(response) {
-      console.log(response.farewell);
-    });
+    chrome.tabs.sendMessage(tabs[0].id, info)  
   });
 }
